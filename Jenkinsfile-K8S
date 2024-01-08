@@ -5,13 +5,13 @@ pipeline {
     }
     agent any
     environment {
-        registry = "255796196034.dkr.ecr.ap-south-1.amazonaws.com/demo"
+        registry = "965125100596.dkr.ecr.us-east-2.amazonaws.com/project-k8s"
     }
    
     stages {
         stage('Cloning Git') {
             steps {
-                checkout([$class: 'GitSCM', branches: [[name: '*/main']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: '', url: 'https://github.com/yasminjeelani/EKS-CICD.git']]])     
+                checkout([$class: 'GitSCM', branches: [[name: '*/main']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: '', url: 'https://github.com/ReshmaSaju/EKS-CICD.git']]])     
             }
         }
       stage ('Build') {
@@ -32,8 +32,8 @@ pipeline {
     stage('Pushing to ECR') {
      steps{  
          script {
-                sh 'aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 255796196034.dkr.ecr.ap-south-1.amazonaws.com'
-                sh 'docker push 255796196034.dkr.ecr.ap-south-1.amazonaws.com/demo:latest'
+                sh 'aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin 965125100596.dkr.ecr.us-east-2.amazonaws.com'
+                sh 'docker push 965125100596.dkr.ecr.us-east-2.amazonaws.com/project-k8s:latest'
          }
         }
       }
