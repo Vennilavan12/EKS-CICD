@@ -6,8 +6,7 @@ pipeline {
     agent any
     environment {
         registry = "965125100596.dkr.ecr.us-east-2.amazonaws.com/project-k8s"
-         aws_registry = "eyJwYXlsb2FkIjoiUTV3S0xORjdPTHFZcTJ0QjZMWjM2bjdESkVPNElVa3BMbVZFdlJpeCtubGdFZm5zVlVYZkZzV1gyZnVHMkxpQWFJa2pXMU9NNTZqTVk0d3NQM2w3UWIwNmpaSTllNTJLbnd1TGZCOW5nanJvNXZRTy9yQVIzQlhYRVh0SEE2VnMxa1dvZVRJQ245QzZOSk1nckFER0krR29uTUR0NnMwNFVzdUxTSkJPQWdMelpNdlhwWElYVGpsY052VU1nUkk1RUcwekJ6VVZNNGg4ZTFQYndmdWxES1A2dTVJSW5oK2VaUy90M3ovRnpGQkFCcmliblk1bktET29XaEwyTVhPbWsxVzM2VnFHaTNQK1Iyc3BXN2FFd1BQN2Z2MTd0VFhVczFtYzhJdFBpWk5UajR4SmpwMklweHJGaG9JMGQ5NEZtb21VWXAzL2NNUVdPMjMvRGw4anJETlRnN1NWMHVmeVYrd3krbGcvNDROY3Q2YTg5UTY1b3V3NE9iWncxbHVaQm5zSGtPWVJpR2I3d2RIeTJuMkQ3aVNZamxpY2hNZHhMeEJyNVhXNXgvYkc5M0VvMlVwTEViZERYcThZMUtSVU12M3BXZFF5MGZSOHM0NEE4UlJkajdtR3VZb2pLNjI2Y3dNbXBCdjFsMU9obGlxaXlXWXFabVMxRFJxTG1xcTVTUm9aVFRWejlJaWdFZmF1SWVMcFRpTFlWT2tWb0piSFdVcFppQ0tiQlRJMTJhUU04VjFZK2pOUjhMd2NhekJ1N3lRWHFJV1lxQTlBN2NwVmVXM25CZUYxT1g1OTVXeUhiL3ZWbWVDVGd4bWJiak16TXc5ZnROblB2SXdza3p0eHc3MmtPb3A0Vnd5aWt3eUJ1Y1ErNUlveEtEclhDQWdHSnV2d24xYmZ2T1VIL3hTMGc1MjZVaVhPNWl1Mi9KS1VWcUFPR21hMzdnVVkvMU1yNDVOZnZLeElERm9mK01JL2hlNGhzb1J2Y05WU1NnUjVYUEtTcFZtc2MremJqa28yRzJBQVg5Qk93dVBUYlZOU2FicDJYdTUvYTFCZ1hGTGJZSjFjZTFWazhTOGc4QUhmSEgrby9kMEc0M2x1bFNJaFlWT3BzbUdVQmdDZGdiYk5Oa1pzWElqc2I0K1ZuRDZBVVptWnBOOWhKSlk2SUl3TlJsRHZ6T0pHcHNUZWVHcDBBbWdqdzFSMUFxejVQeGx2YUFXRUNsUVlWMldML1MxSWQ5QkU4NEVFcm12UVkxN0k3OTExWGR4dDIzU3VoTEh1U3BTSGhHNGpObWNIVlI1Y0V4dmI4M25PS3Rad2J3MGNwdkkwR1d5Z0YyK2U1RDlURWp6MWk2cUdzZFB0UEJXUnhWTjkvQVNWckhwM1ZGT1dYQT09IiwiZGF0YWtleSI6IkFRRUJBSGpCNy9pZ3dNZzROUHdhdXJ4U0lZeDRIZm54dUdjLzQ4YkR3dndEcE5ZV1pnQUFBSDR3ZkFZSktvWklodmNOQVFjR29HOHdiUUlCQURCb0Jna3Foa2lHOXcwQkJ3RXdIZ1lKWUlaSUFXVURCQUV1TUJFRURNbldNVjAvM0xOTFEyVldzZ0lCRUlBN1RDcFJPbzdGYmRRQ3ZuQkZDL1hxeFlxUXoxdlpHZjFJeTZ3SzFsWlNWM2tNRVloeGo5VC9BMndoNnFCN2xyNUJwOEp6MkVKeVh6aGJPc2M9IiwidmVyc2lvbiI6IjIiLCJ0eXBlIjoiREFUQV9LRVkiLCJleHBpcmF0aW9uIjoxNzA0NzY1NzcwfQ=="
-    }
+    }     
    
     stages {
         stage('Cloning Git') {
@@ -33,7 +32,7 @@ pipeline {
     stage('Pushing to ECR') {
      steps{  
          script {
-                sh 'aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin $aws_registry'
+                sh 'aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin'
                 sh 'docker push 965125100596.dkr.ecr.us-east-2.amazonaws.com/project-k8s:latest'
          }
         }
