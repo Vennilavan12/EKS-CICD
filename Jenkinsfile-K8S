@@ -6,6 +6,8 @@ pipeline {
     agent any
     environment {
         registry = "965125100596.dkr.ecr.us-east-2.amazonaws.com/project-k8s"
+         AWS_CREDENTIALS = 'AWS'
+         AWS_REGION = 'us-east-2'
     }     
    
     stages {
@@ -32,8 +34,11 @@ pipeline {
     stage('Pushing to ECR') {
      steps{  
          script {
-                sh 'aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin'
-                sh 'docker push 965125100596.dkr.ecr.us-east-2.amazonaws.com/project-k8s:latest'
+               withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: AWS]]) {
+                        sh "aws ecr get-login-password --region ${AWS_REGION} | docker login --username AWS --password-stdin ${AWS_ECR_REGISTRY}"
+                        sh 'docker push 965125100596.dkr.ecr.us-east-2.amazonaws.com/project-k8s:latest'
+                    }
+                
          }
         }
       }
