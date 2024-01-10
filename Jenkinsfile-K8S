@@ -8,8 +8,8 @@ pipeline {
         registry = "965125100596.dkr.ecr.us-east-1.amazonaws.com/k8s_demo_project"
          // AWS_CREDENTIALS = credentials('AWS')
          AWS_REGION = 'us-east-1'
-         // AWS_ACCESS_KEY_ID = crendentials('AKIA6BNPQKQ2KMVO3ODM')
-         // AWS_SECRET_ACCESS_KEY = credentials('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')
+         // AWS_ACCESS_KEY_ID = crendentials('AKIA6BNPQKQ2DXBYMZND')
+         // AWS_SECRET_ACCESS_KEY = credentials('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')
          
     }     
    
