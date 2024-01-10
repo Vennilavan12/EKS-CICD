@@ -5,11 +5,11 @@ pipeline {
     }
     agent any
     environment {
-        registry = "965125100596.dkr.ecr.us-east-2.amazonaws.com/project-k8s"
+        registry = "965125100596.dkr.ecr.us-east-1.amazonaws.com/k8s_demo_project"
          // AWS_CREDENTIALS = credentials('AWS')
-         AWS_REGION = 'us-east-2'
-         // AWS_ACCESS_KEY_ID = crendentials('AKIA6BNPQKQ2DTZDUUAQ')
-         // AWS_SECRET_ACCESS_KEY = credentials('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')
+         AWS_REGION = 'us-east-1'
+         // AWS_ACCESS_KEY_ID = crendentials('AKIA6BNPQKQ2KMVO3ODM')
+         // AWS_SECRET_ACCESS_KEY = credentials('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')
          
     }     
    
@@ -41,7 +41,7 @@ pipeline {
                withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'AWS']]) {
                        
                         sh "aws ecr get-login-password --region ${AWS_REGION} | docker login --username AWS --password-stdin ${registry}"
-                        sh 'docker push 965125100596.dkr.ecr.us-east-2.amazonaws.com/project-k8s:latest'
+                        sh 'docker push 965125100596.dkr.ecr.us-east-1.amazonaws.com/k8s_demo_project'
                     }
                             
          }
