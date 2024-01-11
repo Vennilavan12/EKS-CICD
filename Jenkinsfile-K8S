@@ -8,6 +8,8 @@ pipeline {
         registry = "965125100596.dkr.ecr.us-east-2.amazonaws.com/k8s_demo_project"
          // AWS_CREDENTIALS = credentials('AWS')
          AWS_REGION = 'us-east-2'
+         EKS_CLUSTER_NAME = 'project5'
+         KUBE_NAMESPACE = 'default'
          // AWS_ACCESS_KEY_ID = crendentials('AKIA6BNPQKQ2DXBYMZND')
          // AWS_SECRET_ACCESS_KEY = credentials('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')
          
@@ -51,10 +53,10 @@ pipeline {
        stage('K8S Deploy') {
          steps{
             script {
-               withKubeConfig(credentialsId: 'newk8s', serverUrl: 'https://CF9D658BD329DD98B5DF8685F7F3C813.gr7.us-east-2.eks.amazonaws.com') {
-
+               sh "aws eks --region $AWS_REGION update-kubeconfig --name $EKS_CLUSTER_NAME"
+               sh "kubectl config use-context $EKS_CLUSTER_NAME"
                sh 'kubectl apply -f  eks-deploy-k8s.yaml'
-                     }
+               
                }
             }        
          }
