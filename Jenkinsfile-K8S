@@ -7,7 +7,7 @@ pipeline {
     environment {
         registry = "965125100596.dkr.ecr.us-east-2.amazonaws.com/k8s_demo_project"
          // AWS_CREDENTIALS = credentials('AWS')
-         AWS_REGION = 'us-east-1'
+         AWS_REGION = 'us-east-2'
          // AWS_ACCESS_KEY_ID = crendentials('AKIA6BNPQKQ2DXBYMZND')
          // AWS_SECRET_ACCESS_KEY = credentials('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')
          
